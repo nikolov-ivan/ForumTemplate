@@ -1,7 +1,7 @@
 ﻿namespace ForumTemplate.Web.Controllers
 {
     using System.Diagnostics;
-    using System.Linq;
+
     using ForumTemplate.Services.Data;
     using ForumTemplate.Web.ViewModels;
     using ForumTemplate.Web.ViewModels.Home;
