@@ -1,23 +1,23 @@
-﻿@using ForumTemplate.Common
-@model ForumTemplate.Web.ViewModels.Home.IndexViewModel
+﻿@model ForumTemplate.Web.ViewModels.Categories.CategoryViewModel
 @{
-    this.ViewData["Title"] = "Home Page";
+    this.ViewData["Title"] = Model.Name;
 }
 
-<div class="text-center">
-    <h1 class="display-4 text-secondary">Welcome to @GlobalConstants.SystemName, @this.User.Identity.Name!</h1>
-</div>
+<h1 class="display-3">@Model.Name</h1>
 
-@foreach (var category in Model.Categories)
+<div class=" alert-info">
+    @Model.Description
+</div>
+@foreach (var post in Model.Posts)
 {
     <div class="card mb-2">
         <div class="card-body p-2 p-sm-3">
             <div class="media forum-item">
-                <a href="@category.Url" ><img src="~/img/dog-1.jpg" class="mr-md-3 rounded-circle" width="100" alt="User" /></a>
+                <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="~/img/dog-1.jpg" class="mr-md-3 rounded-circle" width="100" alt="User" /></a>
                 <div class="media-body">
-                    <h6><a href="@category.Url" class="text-body">@category.Name</a></h6>
+                    <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body">@post.Name</a></h6>
                     <p class="text-secondary">
-                        @category.Description
+                        @post.CommentsCount
                     </p>
                     <p class="text-muted"><a href="javascript:void(0)">drewdan</a> replied <span class="text-secondary font-weight-bold">13 minutes ago</span></p>
                 </div>
@@ -28,9 +28,4 @@
             </div>
         </div>
     </div>
-    
-    
-
 }
-
-

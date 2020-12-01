@@ -1,8 +1,8 @@
-﻿using ForumTemplate.Data.Models;
-using ForumTemplate.Services.Mapping;
-
-namespace ForumTemplate.Web.ViewModels.Home
+﻿namespace ForumTemplate.Web.ViewModels.Home
 {
+    using ForumTemplate.Data.Models;
+    using ForumTemplate.Services.Mapping;
+
     public class IndexCategoryViewModel : IMapFrom<Category>
     {
         public string Name { get; set; }
@@ -10,5 +10,9 @@ namespace ForumTemplate.Web.ViewModels.Home
         public string Description { get; set; }
 
         public string ImageUrl { get; set; }
+
+        public int PostsCount { get; set; }
+
+        public string Url => $"/f/{this.Name.Replace(' ', '-')}";
     }
 }
