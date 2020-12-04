@@ -4,32 +4,28 @@
     this.ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4 text-secondary">Welcome to @GlobalConstants.SystemName, @this.User.Identity.Name!</h1>
+<div class="container text-center alert-primary">
+    <h1 class="display-4 text-dark">Welcome to @GlobalConstants.SystemName, @this.User.Identity.Name!</h1>
 </div>
 
 @foreach (var category in Model.Categories)
 {
-    <div class="card mb-2">
-        <div class="card-body p-2 p-sm-3">
-            <div class="media forum-item">
-                <a href="@category.Url" ><img src="~/img/dog-1.jpg" class="mr-md-3 rounded-circle" width="100" alt="User" /></a>
-                <div class="media-body">
-                    <h6><a href="@category.Url" class="text-body">@category.Name</a></h6>
-                    <p class="text-secondary">
-                        @category.Description
-                    </p>
-                    <p class="text-muted"><a href="javascript:void(0)">drewdan</a> replied <span class="text-secondary font-weight-bold">13 minutes ago</span></p>
-                </div>
-                <div class="text-muted small text-center align-self-center">
-                    <span class="d-none d-sm-inline-block"><i class="far fa-eye"></i> 19</span>
-                    <span><i class="far fa-comment ml-2"></i> 3</span>
-                </div>
+    <div class="container alert alert-primary alert-link">
+        <div class="row">
+            <div class="col-md-1">
+                <img src="~/img/categories/66195-vector-google-icons-computer-online-newspaper-news.png" width="50" />
+            </div>
+            <div class="col-md-9">
+                <div class="panel panel-purple"><a href="@category.Url">@category.Name</a></div>
+                <div>@category.Description</div>
+            </div>
+            <div class="col-md-2">
+                <div>@category.PostsCount Post(s)</div>
             </div>
         </div>
     </div>
-    
-    
+
+
 
 }
 

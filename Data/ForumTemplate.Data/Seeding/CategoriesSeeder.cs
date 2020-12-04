@@ -20,10 +20,10 @@
             var categories = new List<string> { "News", "Music", "Programming", "Sale" };
             foreach (var category in categories)
             {
-                await dbContext.AddAsync( new Category
+                await dbContext.AddAsync(new Category
                 {
                     Name = category,
-                    Description = category,
+                    Description = $"All about {category}",
                     ImgUrl = category,
                 });
             }
