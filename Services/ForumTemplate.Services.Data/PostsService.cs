@@ -1,9 +1,11 @@
 ﻿namespace ForumTemplate.Services.Data
 {
+    using System.Linq;
     using System.Threading.Tasks;
 
     using ForumTemplate.Data.Common.Repositories;
     using ForumTemplate.Data.Models;
+    using ForumTemplate.Services.Mapping;
 
     public class PostsService : IPostsService
     {
@@ -16,7 +18,6 @@
 
         public async Task<int> CreateAsync(string name, string content, int categoryId, string userId)
         {
-
             var post = new Post
             {
                 Name = name,
@@ -28,6 +29,12 @@
             await this.postsRepository.AddAsync(post);
             await this.postsRepository.SaveChangesAsync();
             return post.Id;
+        }
+
+        public T GetById<T>(int id)
+        {
+            var post = this.postsRepository.All().Where(x => x.Id == id).To<T>().FirstOrDefault();
+            return post;
         }
     }
 }

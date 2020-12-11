@@ -16,7 +16,7 @@
             <img src="~/img/categories/66195-vector-google-icons-computer-online-newspaper-news.png" width="50" />
         </div>
         <div class="col-md-9">
-            <div class="panel panel-purple"><a href="@post.Name">@post.Name</a></div>
+            <div class="panel panel-purple"><a asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id">@post.Name</a></div>
             <div>@post.Content</div>
         </div>
         <div class="col-md-2">

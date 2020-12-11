@@ -5,6 +5,8 @@
 
     public class PostInCategoryViewModel : IMapFrom<Post>
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public string UserUserName { get; set; }
