@@ -1,80 +1,88 @@
 ﻿@model ForumTemplate.Web.ViewModels.Posts.PostViewModel
-@{ 
+@{
     this.ViewData["Title"] = Model.Name;
 }
 
 <h1>@this.ViewData["Title"]</h1>
 
-<div class="row">
-  <div class="span8">
+<div class="container-fluid mt-100 alert alert-primary">
     <div class="row">
-      <div class="span8">
-        <h4><strong><a href="#">@Model.Name</a></strong></h4>
-      </div>
-    </div>
-    <div class="row">
-      <div class="span2">
-        <a href="#" class="thumbnail">
-            <img src="http://placehold.it/260x180" alt="">
-        </a>
-      </div>
-      <div class="span6">      
-        <p>
-          Lorem ipsum dolor sit amet, id nec conceptam conclusionemque. Et eam tation option. Utinam salutatus ex eum. Ne mea dicit tibique facilisi, ea mei omittam explicari conclusionemque, ad nobis propriae quaerendum sea.
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="span8">
-        <p></p>
-        <p>
-          <i class="icon-user"></i> by <a href="#">Mark</a> 
-          | <i class="icon-calendar"></i> Sept 16th, 2012
-          | <i class="icon-comment"></i> <a href="#">3 Comments</a>
-          | <i class="icon-share"></i> <a href="#">39 Shares</a>
-          | <i class="icon-tags"></i> Tags : <a href="#"><span class="label label-info">Snipp</span></a> 
-          <a href="#"><span class="label label-info">Bootstrap</span></a> 
-          <a href="#"><span class="label label-info">UI</span></a> 
-          <a href="#"><span class="label label-info">growth</span></a>
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-<hr />
-<div class="row">
-    <div class="span8">
-        <div class="row">
-            <div class="span8">
-                <h4><strong><a href="#">Title of the post</a></strong></h4>
-            </div>
-        </div>
-        <div class="row">
-            <div class="span2">
-                <a href="#" class="thumbnail">
-                    <img src="http://placehold.it/260x180" alt="">
-                </a>
-            </div>
-            <div class="span6">
-                <p>
-                    Lorem ipsum dolor sit amet, id nec conceptam conclusionemque. Et eam tation option. Utinam salutatus ex eum. Ne mea dicit tibique facilisi, ea mei omittam explicari conclusionemque, ad nobis propriae quaerendum sea.
-                </p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="span8">
-                <p></p>
-                <p>
-                    <i class="icon-user"></i> by <a href="#">Mark</a>
-                    | <i class="icon-calendar"></i> Sept 16th, 2012
-                    | <i class="icon-comment"></i> <a href="#">3 Comments</a>
-                    | <i class="icon-share"></i> <a href="#">39 Shares</a>
-                    | <i class="icon-tags"></i> Tags : <a href="#"><span class="label label-info">Snipp</span></a>
-                    <a href="#"><span class="label label-info">Bootstrap</span></a>
-                    <a href="#"><span class="label label-info">UI</span></a>
-                    <a href="#"><span class="label label-info">growth</span></a>
-                </p>
+        <div class="col-md-12">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <div class="media flex-wrap w-100 align-items-center">
+                        <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583246/AAA/2.jpg" class="d-block ui-w-40 rounded-circle" alt="">
+                        <div class="media-body ml-3">
+                            <a href="javascript:void(0)" data-abc="true">@Model.UserUsername</a>
+                            <div class="text-muted small">@Model.PostDate days ago</div>
+                        </div>
+                        <div class="text-muted small ml-3">
+                            <div>Member since <strong>01/1/2019</strong></div>
+                            <div><strong>134</strong> posts</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>
+                        @Model.Content
+                    </p>
+
+                </div>
+                <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
+                    <div class="px-4 pt-3">
+                        <a href="javascript:void(0)" class="text-muted d-inline-flex align-items-center align-middle" data-abc="true"> <i class="fa fa-heart text-danger"></i>&nbsp; <span class="align-middle">445</span> </a> <span class="text-muted d-inline-flex align-items-center align-middle ml-4"> <i class="fa fa-eye text-muted fsize-3"></i>&nbsp; <span class="align-middle">14532</span> </span>
+                        @if (Model.ModifiedOn != null)
+                        {
+                            <span>@Model.ModifiedOn</span>
+                        }
+                    </div>
+                    <div class="px-4 pt-3"> <button type="button" class="btn btn-primary"><i class="ion ion-md-create"></i>&nbsp; Reply</button> </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+@foreach (var comment in Model.Comments)
+{
+    <div class="container-fluid mt-100 alert alert-primary">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <div class="media flex-wrap w-100 align-items-center">
+                            <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583246/AAA/2.jpg" class="d-block ui-w-40 rounded-circle" alt="">
+                            <div class="media-body ml-3">
+                                <a href="javascript:void(0)" data-abc="true">@comment.UserUserName</a>
+                                <div class="text-muted small">@Model.PostDate days ago</div>
+                            </div>
+                            <div class="text-muted small ml-3">
+                                <div>Member since <strong>01/1/2019</strong></div>
+                                <div><strong>134</strong> posts</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            @Model.Content
+                        </p>
+
+                    </div>
+                    <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
+                        <div class="px-4 pt-3"> 
+                        <a href="javascript:void(0)" class="text-muted d-inline-flex align-items-center align-middle" data-abc="true"> <i class="fa fa-heart text-danger"></i>&nbsp; 
+                            <span class="align-middle">445</span> 
+                        </a> 
+                            <span class="text-muted d-inline-flex align-items-center align-middle ml-4"> 
+                            <i class="fa fa-eye text-muted fsize-3"></i>&nbsp; <span class="align-middle">14532</span> </span>
+                            @if(comment.ModifiedOn != null)
+                            {
+                                <span>@comment.ModifiedOn</span>
+                            }
+                        </div>
+                        <div class="px-4 pt-3"> <button type="button" class="btn btn-primary"><i class="ion ion-md-create"></i>&nbsp; Reply</button> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

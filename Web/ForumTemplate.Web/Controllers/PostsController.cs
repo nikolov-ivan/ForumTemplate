@@ -20,7 +20,7 @@
         private readonly ICategoriesService categoriesService;
 
         public PostsController(
-            UserManager<ApplicationUser> userManager, 
+            UserManager<ApplicationUser> userManager,
             IPostsService postsService,
             ICategoriesService categoriesService)
         {
