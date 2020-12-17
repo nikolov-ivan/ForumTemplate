@@ -13,13 +13,13 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    public class PostsController : Controller
+    public class Posts : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IPostsService postsService;
         private readonly ICategoriesService categoriesService;
 
-        public PostsController(
+        public Posts(
             UserManager<ApplicationUser> userManager,
             IPostsService postsService,
             ICategoriesService categoriesService)

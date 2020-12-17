@@ -2,10 +2,11 @@
 @model ForumTemplate.Web.ViewModels.Home.IndexViewModel
 @{
     this.ViewData["Title"] = "Home Page";
+    var user = this.User.Identity.Name == null ? "Guest" : this.User.Identity.Name;
 }
 
 <div class="container text-center alert-primary">
-    <h1 class="display-4 text-dark">Welcome to @GlobalConstants.SystemName, @this.User.Identity.Name!</h1>
+    <h1 class="display-4 text-dark">Welcome to @GlobalConstants.SystemName, @user!</h1>
 </div>
 
 @foreach (var category in Model.Categories)

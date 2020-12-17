@@ -3,25 +3,33 @@
     this.ViewData["Title"] = Model.Name;
 }
 
+
 <h1 class="display-3">@Model.Name</h1>
 
-<div>
-    @Model.Description
+<div class="row">
+    <div class="col-md-10">@Model.Description</div>
+    @if (this.User.Identity.IsAuthenticated)
+    {
+        <div class="col-md-2"><a asp-controller="Posts" asp-action="Create">Create new Post</a></div>
+    }
 </div>
+<hr />
 @foreach (var post in Model.Posts)
 {
-<div class="container alert alert-primary alert-link">
-    <div class="row">
-        <div class="col-md-1">
-            <img src="~/img/categories/66195-vector-google-icons-computer-online-newspaper-news.png" width="50" />
-        </div>
-        <div class="col-md-9">
-            <div class="panel panel-purple"><a asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id">@post.Name</a></div>
-            <div>@post.Content</div>
-        </div>
-        <div class="col-md-2">
-            <div>@post.CommentsCount Comment(s)</div>
+    <div class="container alert alert-primary alert-link">
+        <div class="row">
+            <div class="col-md-1">
+                <img src="~/img/categories/66195-vector-google-icons-computer-online-newspaper-news.png" width="50" />
+            </div>
+            <div class="col-md-9">
+                <div class="panel panel-purple"><a asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id">@post.Name</a></div>
+                <div>@Html.Raw(post.SanitizedContent)</div>
+            </div>
+            <div class="col-md-2">
+                <div>@post.CommentsCount Comment(s)</div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-9">Author:@post.UserUserName</div>
         </div>
     </div>
-</div>
 }

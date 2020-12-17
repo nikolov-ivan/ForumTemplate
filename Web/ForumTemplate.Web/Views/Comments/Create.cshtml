@@ -1,0 +1,12 @@
+﻿@model ForumTemplate.Web.ViewModels.Comments.CreateCommentViewModel
+
+<h3>Create new comment</h3>
+
+<form asp-controller="Comments" asp-action="Create" method="post">
+    <div>
+        <label asp-for="Content"></label>
+        <textarea asp-for="Content" class="form-control"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+    <input type="submit" class="btn btn-primary" />
+</form>
