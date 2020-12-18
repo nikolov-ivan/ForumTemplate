@@ -5,5 +5,7 @@
         public const string SystemName = "ForumTemplate";
 
         public const string AdministratorRoleName = "Administrator";
+
+        public const int ShortSanitizedContentMaxLength = 150;
     }
 }

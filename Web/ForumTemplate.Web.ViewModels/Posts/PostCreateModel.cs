@@ -1,24 +1,22 @@
 ﻿namespace ForumTemplate.Web.ViewModels.Posts
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
     using ForumTemplate.Data.Models;
     using ForumTemplate.Services.Mapping;
 
-    public class PostCreateInputModel : IMapFrom<Post>
+    public class PostCreateModel : IMapFrom<Post>
     {
         [Required]
         [Display(Name = "Title", Prompt = "Input youre post title here...")]
         public string Name { get; set; }
 
         [Required]
-        [Display(Name = "Content", Prompt = "Add youre comment here...")]
+        [Display(Name = "Content", Prompt = "Input youre content here...")]
         public string Content { get; set; }
 
-        [Range(1, int.MaxValue)]
-        [Display(Name = "Choose category for youre post:")]
+        [Required]
+        [Display(Name = "CategoryId", Prompt = "Choose category")]
         public int CategoryId { get; set; }
 
         public IEnumerable<CategoryDropDownViewModel> Categories { get; set; }

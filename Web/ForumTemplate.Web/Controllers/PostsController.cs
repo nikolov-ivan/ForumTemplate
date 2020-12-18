@@ -39,7 +39,7 @@
         public IActionResult Create()
         {
             var categories = this.categoriesService.GetAll<CategoryDropDownViewModel>();
-            var viewModel = new PostCreateInputModel
+            var viewModel = new PostCreateModel
             {
                 Categories = categories,
             };
@@ -52,7 +52,16 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return this.View(input);
+                var categories = this.categoriesService.GetAll<CategoryDropDownViewModel>();
+                var model = new PostCreateModel
+                {
+                    Categories = categories,
+                    Name = input.Name,
+                    Content = input.Content,
+                    CategoryId = input.CategoryId,
+                };
+
+                return this.View(model);
             }
 
             var user = await this.userManager.GetUserAsync(this.User);

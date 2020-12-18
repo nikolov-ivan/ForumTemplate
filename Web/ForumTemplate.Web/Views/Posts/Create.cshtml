@@ -1,4 +1,4 @@
-﻿@model ForumTemplate.Web.ViewModels.Posts.PostCreateInputModel
+﻿@model ForumTemplate.Web.ViewModels.Posts.PostCreateModel
 
 @{
     this.ViewData["Title"] = "New blog post";
@@ -41,7 +41,9 @@
         plugins: [
             "image paste table link code media lists code emoticons"
         ],
-        toolbar: "emoticons",        
-        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+        toolbar: "emoticons",
+        content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+
     });
 </script>
+

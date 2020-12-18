@@ -11,20 +11,20 @@
 
     public class PostViewModel : IMapFrom<Post>
     {
+        private readonly IHtmlSanitizer sanitizer;
+
+        public PostViewModel()
+        {
+            this.sanitizer = new HtmlSanitizer();
+        }
+
         public int Id { get; set; }
 
         public string Name { get; set; }
 
         public string Content { get; set; }
 
-        public string SanitizedContent
-        {
-            get
-            {
-                var decodeContent = WebUtility.HtmlDecode(Regex.Replace(this.Content, @"<[^>]+>", string.Empty));
-                return new HtmlSanitizer().Sanitize(decodeContent);
-            }
-        }
+        public string SanitizedContent => this.sanitizer.Sanitize(this.Content);
 
         public string UserUsername { get; set; }
 

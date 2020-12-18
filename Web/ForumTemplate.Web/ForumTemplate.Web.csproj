@@ -42,4 +42,8 @@
     <ProjectReference Include="..\ForumTemplate.Web.Infrastructure\ForumTemplate.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\ForumTemplate.Web.ViewModels\ForumTemplate.Web.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\css\" />
+  </ItemGroup>
 </Project>

@@ -23,7 +23,7 @@
             </div>
             <div class="col-md-9">
                 <div class="panel panel-purple"><a asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id">@post.Name</a></div>
-                <div>@Html.Raw(post.SanitizedContent)</div>
+                <div>@Html.Raw(post.ShortSanitizedContent)</div>
             </div>
             <div class="col-md-2">
                 <div>@post.CommentsCount Comment(s)</div>
