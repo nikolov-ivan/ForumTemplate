@@ -29,16 +29,16 @@
             this.categoriesService = categoriesService;
         }
 
-        public IActionResult ById(int id)
+        public async Task<IActionResult> ById(int id)
         {
-            var postModel = this.postsService.GetById<PostViewModel>(id);
+            var postModel = await this.postsService.GetByIdAsync<PostViewModel>(id);
             return this.View(postModel);
         }
 
         [Authorize]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            var categories = this.categoriesService.GetAll<CategoryDropDownViewModel>();
+            var categories = await this.categoriesService.GetAllAsync<CategoryDropDownViewModel>();
             var viewModel = new PostCreateModel
             {
                 Categories = categories,
@@ -46,13 +46,13 @@
             return this.View(viewModel);
         }
 
-        [HttpPost]
         [Authorize]
+        [HttpPost]
         public async Task<IActionResult> Create(PostCreateInputModel input)
         {
             if (!this.ModelState.IsValid)
             {
-                var categories = this.categoriesService.GetAll<CategoryDropDownViewModel>();
+                var categories = await this.categoriesService.GetAllAsync<CategoryDropDownViewModel>();
                 var model = new PostCreateModel
                 {
                     Categories = categories,
@@ -68,6 +68,39 @@
             var postId = await this.postsService.CreateAsync(input.Name, input.Content, input.CategoryId, user.Id);
 
             return this.RedirectToAction(nameof(this.ById), new { id = postId });
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var categories = await this.categoriesService.GetAllAsync<CategoryDropDownViewModel>();
+            var postModel = await this.postsService.GetByIdAsync<PostEditInputModel>(id);
+            postModel.Categories = categories;
+            if (postModel == null)
+            {
+                return this.NotFound();
+            }
+
+            var user = await this.userManager.GetUserAsync(this.User);
+            if (postModel.UserId != user.Id)
+            {
+                return this.Unauthorized();
+            }
+
+            return this.View(postModel);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<IActionResult> Edit(PostEditInputModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(input);
+            }
+
+            await this.postsService.EditAsync(input.Name, input.Content, input.CategoryId, input.Id);
+            return this.RedirectToAction(nameof(this.ById), new { input.Id });
         }
     }
 }

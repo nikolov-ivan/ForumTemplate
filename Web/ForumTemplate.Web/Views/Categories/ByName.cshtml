@@ -10,26 +10,27 @@
     <div class="col-md-10">@Model.Description</div>
     @if (this.User.Identity.IsAuthenticated)
     {
-        <div class="col-md-2"><a asp-controller="Posts" asp-action="Create">Create new Post</a></div>
+        <div class="col-md-2"><a class="btn btn-primary" asp-controller="Posts" asp-action="Create"><i class="far fa-plus-square"></i> Add new Post</a></div>
     }
 </div>
 <hr />
 @foreach (var post in Model.Posts)
 {
-    <div class="container alert alert-primary alert-link">
+    <div class="container bg-light" >
         <div class="row">
             <div class="col-md-1">
                 <img src="~/img/categories/66195-vector-google-icons-computer-online-newspaper-news.png" width="50" />
             </div>
             <div class="col-md-9">
-                <div class="panel panel-purple"><a asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id">@post.Name</a></div>
-                <div>@Html.Raw(post.ShortSanitizedContent)</div>
+                <div class="panel panel-purple"><a asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id"><h4><i class="far fa-comment-dots"></i> @post.Name</h4></a></div>
+                <div><i class="fas fa-comment-alt"></i> @Html.Raw(post.ShortSanitizedContent)</div>
             </div>
             <div class="col-md-2">
-                <div>@post.CommentsCount Comment(s)</div>
+                <div>@post.CommentsCount <i class="far fa-comments"></i></div>
             </div>
             <div class="col-md-1"></div>
-            <div class="col-md-9">Author:@post.UserUserName</div>
+            <div class="col-md-9"><i class="far fa-user"></i> by <a asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id">@post.UserUserName</a></div>
         </div>
     </div>
+    <hr />
 }

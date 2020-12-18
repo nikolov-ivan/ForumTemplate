@@ -24,7 +24,7 @@
 
         public string Content { get; set; }
 
-        public string ShortSanitizedContent => this.sanitizer.Sanitize(this.Content.Length >
+        public string ShortSanitizedContent => this.Content == null ? GlobalConstants.NoContentMessage : this.sanitizer.Sanitize(this.Content.Length >
             GlobalConstants.ShortSanitizedContentMaxLength ?
             this.Content.Substring(0, GlobalConstants.ShortSanitizedContentMaxLength) + "..." : this.Content);
     }

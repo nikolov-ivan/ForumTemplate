@@ -6,6 +6,7 @@
     using ForumTemplate.Data.Common.Repositories;
     using ForumTemplate.Data.Models;
     using ForumTemplate.Services.Mapping;
+    using Microsoft.EntityFrameworkCore;
 
     public class PostsService : IPostsService
     {
@@ -31,10 +32,21 @@
             return post.Id;
         }
 
-        public T GetById<T>(int id)
+        public async Task<int> EditAsync(string name, string content, int categoryId, int postId)
         {
-            var post = this.postsRepository.All().Where(x => x.Id == id).To<T>().FirstOrDefault();
+            var post = await this.postsRepository.All().Where(x => x.Id == postId).FirstOrDefaultAsync();
+            post.Name = name;
+            post.Content = content;
+            post.CategoryId = categoryId;
+            await this.postsRepository.SaveChangesAsync();
+            return postId;
+        }
+
+        public async Task<T> GetByIdAsync<T>(int id)
+        {
+            var post = await this.postsRepository.All().Where(x => x.Id == id).To<T>().FirstOrDefaultAsync();
             return post;
         }
+
     }
 }

@@ -18,9 +18,9 @@
             this.categoriesService = categoriesService;
         }
 
-        public IActionResult ByName(string name)
+        public async Task<IActionResult> ByName(string name)
         {
-            var viewModel = this.categoriesService.GetByName<CategoryViewModel>(name);
+            var viewModel = await this.categoriesService.GetByName<CategoryViewModel>(name);
             return this.View(viewModel);
         }
     }

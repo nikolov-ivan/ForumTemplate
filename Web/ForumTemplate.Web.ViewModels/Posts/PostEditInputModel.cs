@@ -6,19 +6,24 @@
     using ForumTemplate.Data.Models;
     using ForumTemplate.Services.Mapping;
 
-    public class PostCreateModel : IMapFrom<Post>
+    public class PostEditInputModel : IMapFrom<Post>
     {
+        public int Id { get; set; }
+
         [Required]
-        [Display(Name = "Title", Prompt = "Input youre post title here...")]
+        [Display(Name = "Title")]
         public string Name { get; set; }
 
         [Required]
-        [Display(Name = "Content", Prompt = "Input youre content here...")]
+        [Display(Name = "Content")]
         public string Content { get; set; }
 
         [Required]
-        [Display(Name = "CategoryId", Prompt = "Choose category")]
+        [Range(1, int.MaxValue)]
+        [Display(Name = "Choose category for youre post:")]
         public int CategoryId { get; set; }
+
+        public string UserId { get; set; }
 
         public IEnumerable<CategoryDropDownViewModel> Categories { get; set; }
     }

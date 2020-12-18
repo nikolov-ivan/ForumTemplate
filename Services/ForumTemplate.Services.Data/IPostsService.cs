@@ -9,6 +9,8 @@
     {
         Task<int> CreateAsync(string name, string content, int categoryId, string userId);
 
-        T GetById<T>(int id);
+        Task<T> GetByIdAsync<T>(int id);
+
+        Task<int> EditAsync(string name, string content, int categoryId, int postId);
     }
 }

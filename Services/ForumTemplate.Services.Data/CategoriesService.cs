@@ -20,7 +20,7 @@
             this.categoryRepository = categoryRepository;
         }
 
-        public IEnumerable<T> GetAll<T>(int? count = null)
+        public async Task<IEnumerable<T>> GetAllAsync<T>(int? count = null)
         {
             IQueryable<Category> query = this.categoryRepository.All();
             if (count.HasValue)
@@ -28,12 +28,12 @@
                 query = query.Take(count.Value);
             }
 
-            return query.To<T>().ToList();
+            return await query.To<T>().ToListAsync();
         }
 
-        public T GetByName<T>(string name)
+        public async Task<T> GetByName<T>(string name)
         {
-            var category = this.categoryRepository.All().Where(x => x.Name == name).To<T>().FirstOrDefault();
+            var category = await this.categoryRepository.All().Where(x => x.Name == name).To<T>().FirstOrDefaultAsync();
             return category;
         }
     }

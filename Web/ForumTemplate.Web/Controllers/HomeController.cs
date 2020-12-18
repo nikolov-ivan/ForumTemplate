@@ -1,7 +1,7 @@
 ﻿namespace ForumTemplate.Web.Controllers
 {
     using System.Diagnostics;
-
+    using System.Threading.Tasks;
     using ForumTemplate.Services.Data;
     using ForumTemplate.Web.ViewModels;
     using ForumTemplate.Web.ViewModels.Home;
@@ -16,10 +16,10 @@
             this.categoriesService = categoriesService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             var viewModel = new IndexViewModel();
-            var categories = this.categoriesService.GetAll<IndexCategoryViewModel>();
+            var categories = await this.categoriesService.GetAllAsync<IndexCategoryViewModel>();
             viewModel.Categories = categories;
             return this.View(viewModel);
         }
