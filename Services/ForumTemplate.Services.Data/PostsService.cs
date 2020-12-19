@@ -32,6 +32,13 @@
             return post.Id;
         }
 
+        public async Task DeleteAsync(int postId)
+        {
+            var post = await this.postsRepository.All().Where(x => x.Id == postId).FirstOrDefaultAsync();
+            post.IsDeleted = true;
+            await this.postsRepository.SaveChangesAsync();
+        }
+
         public async Task<int> EditAsync(string name, string content, int categoryId, int postId)
         {
             var post = await this.postsRepository.All().Where(x => x.Id == postId).FirstOrDefaultAsync();

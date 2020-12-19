@@ -1,8 +1,6 @@
 ﻿namespace ForumTemplate.Web.ViewModels.Categories
 {
-    using System;
     using System.Collections.Generic;
-    using System.Text;
 
     using ForumTemplate.Data.Models;
     using ForumTemplate.Services.Mapping;

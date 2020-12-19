@@ -3,34 +3,48 @@
     this.ViewData["Title"] = Model.Name;
 }
 
-
-<h1 class="display-3">@Model.Name</h1>
-
-<div class="row">
-    <div class="col-md-10">@Model.Description</div>
-    @if (this.User.Identity.IsAuthenticated)
-    {
-        <div class="col-md-2"><a class="btn btn-primary" asp-controller="Posts" asp-action="Create"><i class="far fa-plus-square"></i> Add new Post</a></div>
-    }
-</div>
-<hr />
-@foreach (var post in Model.Posts)
-{
-    <div class="container bg-light" >
-        <div class="row">
-            <div class="col-md-1">
-                <img src="~/img/categories/66195-vector-google-icons-computer-online-newspaper-news.png" width="50" />
-            </div>
-            <div class="col-md-9">
-                <div class="panel panel-purple"><a asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id"><h4><i class="far fa-comment-dots"></i> @post.Name</h4></a></div>
-                <div><i class="fas fa-comment-alt"></i> @Html.Raw(post.ShortSanitizedContent)</div>
-            </div>
-            <div class="col-md-2">
-                <div>@post.CommentsCount <i class="far fa-comments"></i></div>
-            </div>
-            <div class="col-md-1"></div>
-            <div class="col-md-9"><i class="far fa-user"></i> by <a asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id">@post.UserUserName</a></div>
+<div class="container">
+    <div class="container">
+        <div class="row bg-light rounded p-3">
+            <h3 class="col-md-10">Category: @Model.Name</h3>
+            @if (this.User.Identity.IsAuthenticated)
+            {
+                <a class="btn btn-primary float-right col-md-2" asp-controller="Posts" asp-action="Create"><i class="far fa-plus-square"></i> Add new Post</a>
+            }
         </div>
     </div>
     <hr />
+    @if (this.Model.Posts.Any())
+    {
+        @foreach (var post in Model.Posts)
+        {
+            <div class="container bg-light rounded p-3">
+                <div class="row">
+                    <div class="col-md-1">
+                        <img src="~/img/categories/information.png" width="50" />
+                    </div>
+                    <div class="col-md-9">
+                        <div class="panel panel-purple"><a asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id"><h4>@post.Name</h4></a></div>
+                        <div>@Html.Raw(post.ShortSanitizedContent)</div>
+                    </div>
+                    <div class="col-md-2">
+                        <div> @post.CommentsCount Comments <img src="~/img/categories/comment.png" width="30"></div>
+                    </div>
+
+                    <div class="col-md">by <a asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id">@post.UserUserName</a></div>
+                </div>
+            </div>
+            <hr />
+        }
+    }
+    else
+    {
+        <div class="bg-light rounded p-3">
+            <img src="~/img/categories/stop.png" width="50">
+            <h3>This forum category is empty, add first post...</h3>
+        </div>
+    }
+</div>
+
+@section Scripts{    
 }

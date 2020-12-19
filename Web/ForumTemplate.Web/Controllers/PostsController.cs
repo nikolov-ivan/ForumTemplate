@@ -13,13 +13,13 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    public class Posts : Controller
+    public class PostsController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IPostsService postsService;
         private readonly ICategoriesService categoriesService;
 
-        public Posts(
+        public PostsController(
             UserManager<ApplicationUser> userManager,
             IPostsService postsService,
             ICategoriesService categoriesService)
@@ -101,6 +101,20 @@
 
             await this.postsService.EditAsync(input.Name, input.Content, input.CategoryId, input.Id);
             return this.RedirectToAction(nameof(this.ById), new { input.Id });
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+            var post = await this.postsService.GetByIdAsync<PostViewModel>(id);
+            if (user.UserName != post.UserUsername)
+            {
+                return this.Unauthorized();
+            }
+
+            await this.postsService.DeleteAsync(post.Id);
+            return this.View();
         }
     }
 }

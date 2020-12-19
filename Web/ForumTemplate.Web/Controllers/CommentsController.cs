@@ -42,7 +42,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
             await this.commentsService.CreateAsync(input.Content, id, user.Id);
 
-            return this.RedirectToAction(nameof(Posts.ById), nameof(Posts), new { id });
+            return this.RedirectToAction("ById", "Posts", new { id });
         }
     }
 }

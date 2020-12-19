@@ -5,29 +5,39 @@
     var user = this.User.Identity.Name == null ? "Guest" : this.User.Identity.Name;
 }
 
-<div class="container text-center alert-primary">
-    <h1 class="display-4 text-dark">Welcome to @GlobalConstants.SystemName, @user!</h1>
+<div class="container text-center bg-light p-3 rounded">
+    <h1 class="text-dark">Welcome to @GlobalConstants.SystemName, @user!</h1>
+    @if (!this.User.Identity.IsAuthenticated)
+    {
+        <h6 class="text-dark">
+            You are guest user! You can only read posts and comments! Please
+            <a asp-area="Identity" asp-page="/Account/Login">Login</a>
+            or
+            <a asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </h6>
+    }
 </div>
+<hr />
+<h3 class="bg-light rounded p-3 text-dark">All categories:</h3>
+<hr />
 
 @foreach (var category in Model.Categories)
 {
-    <div class="container alert alert-primary alert-link">
-        <div class="row">
+    <div class="container shadow-lg p-3 mb-3 rounded bg-light">
+        <div class="row mb-3">
             <div class="col-md-1">
-                <img src="~/img/categories/66195-vector-google-icons-computer-online-newspaper-news.png" width="50" />
+                <img src="~/img/categories/chat.png" width="50" />
             </div>
             <div class="col-md-9">
-                <div class="panel panel-purple"><a href="@category.Url">@category.Name</a></div>
+                <div class="panel panel-purple"><a href="@category.Url"><h2>@category.Name</h2></a></div>
                 <div>@category.Description</div>
             </div>
             <div class="col-md-2">
-                <div>Total @category.PostsCount Post(s)</div>
+                <div><img src="~/img/categories/email_open.png" width="40" /> @category.PostsCount Post(s)</div>
             </div>
         </div>
     </div>
-
-
-
+    <hr />
 }
 
 
