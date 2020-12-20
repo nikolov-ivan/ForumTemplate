@@ -1,11 +1,7 @@
 ﻿namespace ForumTemplate.Web.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
-    using ForumTemplate.Data.Common.Repositories;
     using ForumTemplate.Data.Models;
     using ForumTemplate.Services.Data;
     using ForumTemplate.Web.ViewModels.Posts;

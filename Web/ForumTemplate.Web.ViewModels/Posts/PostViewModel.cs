@@ -28,6 +28,8 @@
 
         public string UserUsername { get; set; }
 
+        public int CommentsCount { get; set; }
+
         public DateTime CreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }

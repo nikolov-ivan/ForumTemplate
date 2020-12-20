@@ -54,6 +54,5 @@
             var post = await this.postsRepository.All().Where(x => x.Id == id).To<T>().FirstOrDefaultAsync();
             return post;
         }
-
     }
 }
