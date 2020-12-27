@@ -15,6 +15,6 @@
 
         Task DeleteAsync(int postId);
 
-
+        Task AddViewAsync(int postId);
     }
 }

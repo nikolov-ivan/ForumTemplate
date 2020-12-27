@@ -24,6 +24,8 @@
 
         public int CommentsCount { get; set; }
 
+        public int View { get; set; }
+
         public DateTime CreatedOn { get; set; }
 
         public string Content { get; set; }

@@ -23,12 +23,13 @@
                     <div class="col-md-1">
                         <img src="~/img/categories/information.png" width="50" />
                     </div>
-                    <div class="col-md-9">
+                    <div class="col-md-8">
                         <div class="panel panel-purple"><a asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id"><h4>@post.Name</h4></a></div>
                         <div>@Html.Raw(post.ShortSanitizedContent)</div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div> @post.CommentsCount Comments <img src="~/img/categories/comment.png" width="30" /></div>
+                        <div> @post.View Views <img src="~/img/categories/compupic.png" width="30" /></div>                       
                     </div>
 
                     <div class="col-md">by <a asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id">@post.UserUserName</a></div>

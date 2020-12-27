@@ -28,6 +28,7 @@
         public async Task<IActionResult> ById(int id)
         {
             var postModel = await this.postsService.GetByIdAsync<PostViewModel>(id);
+            await this.postsService.AddViewAsync(id);
             return this.View(postModel);
         }
 

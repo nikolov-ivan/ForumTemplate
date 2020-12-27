@@ -54,5 +54,12 @@
             var post = await this.postsRepository.All().Where(x => x.Id == id).To<T>().FirstOrDefaultAsync();
             return post;
         }
+
+        public async Task AddViewAsync(int id)
+        {
+            var post = await this.postsRepository.All().FirstOrDefaultAsync(x => x.Id == id);
+            post.View++;
+            await this.postsRepository.SaveChangesAsync();
+        }
     }
 }
