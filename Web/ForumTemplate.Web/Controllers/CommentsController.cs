@@ -20,7 +20,6 @@
         {
             this.commentsService = commentsService;
             this.userManager = userManager;
-            this.userManager = userManager;
         }
 
         [Authorize]
@@ -43,6 +42,11 @@
             await this.commentsService.CreateAsync(input.Content, id, user.Id);
 
             return this.RedirectToAction("ById", "Posts", new { id });
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            return this.View();
         }
     }
 }

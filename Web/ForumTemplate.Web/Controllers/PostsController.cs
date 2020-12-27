@@ -35,7 +35,7 @@
         public async Task<IActionResult> Create()
         {
             var categories = await this.categoriesService.GetAllAsync<CategoryDropDownViewModel>();
-            var viewModel = new PostCreateModel
+            var viewModel = new PostCreateInputModel
             {
                 Categories = categories,
             };
@@ -49,7 +49,7 @@
             if (!this.ModelState.IsValid)
             {
                 var categories = await this.categoriesService.GetAllAsync<CategoryDropDownViewModel>();
-                var model = new PostCreateModel
+                var model = new PostCreateInputModel
                 {
                     Categories = categories,
                     Name = input.Name,
@@ -71,12 +71,12 @@
         {
             var categories = await this.categoriesService.GetAllAsync<CategoryDropDownViewModel>();
             var postModel = await this.postsService.GetByIdAsync<PostEditInputModel>(id);
-            postModel.Categories = categories;
             if (postModel == null)
             {
                 return this.NotFound();
             }
 
+            postModel.Categories = categories;
             var user = await this.userManager.GetUserAsync(this.User);
             if (postModel.UserId != user.Id)
             {
@@ -92,6 +92,8 @@
         {
             if (!this.ModelState.IsValid)
             {
+                var categories = await this.categoriesService.GetAllAsync<CategoryDropDownViewModel>();
+                input.Categories = categories;
                 return this.View(input);
             }
 

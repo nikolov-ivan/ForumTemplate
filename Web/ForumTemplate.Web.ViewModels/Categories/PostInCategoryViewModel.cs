@@ -1,5 +1,7 @@
 ﻿namespace ForumTemplate.Web.ViewModels.Categories
 {
+    using System;
+
     using ForumTemplate.Common;
     using ForumTemplate.Data.Models;
     using ForumTemplate.Services.Mapping;
@@ -21,6 +23,8 @@
         public string UserUserName { get; set; }
 
         public int CommentsCount { get; set; }
+
+        public DateTime CreatedOn { get; set; }
 
         public string Content { get; set; }
 

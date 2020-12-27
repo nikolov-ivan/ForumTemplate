@@ -20,7 +20,7 @@
 
         [Required]
         [Range(1, int.MaxValue)]
-        [Display(Name = "Choose category for youre post:")]
+        [Display(Name = "Choose category for your post:")]
         public int CategoryId { get; set; }
 
         public string UserId { get; set; }

@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     using ForumTemplate.Data.Models;
     using ForumTemplate.Services.Mapping;
@@ -10,15 +11,17 @@
     public class PostCreateInputModel : IMapFrom<Post>
     {
         [Required]
-        [Display(Name = "Title", Prompt = "Input youre post title here...")]
+        [Display(Name = "Post Title", Prompt = "Input your post title here...")]
         public string Name { get; set; }
 
         [Required]
-        [Display(Name = "Content", Prompt = "Add youre comment here...")]
+        [MaxLength(30000)]
+        [AllowHtml]
+        [DataType(DataType.MultilineText)]
         public string Content { get; set; }
 
+        [Required]
         [Range(1, int.MaxValue)]
-        [Display(Name = "Choose category for youre post:")]
         public int CategoryId { get; set; }
 
         public IEnumerable<CategoryDropDownViewModel> Categories { get; set; }

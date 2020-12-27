@@ -16,7 +16,7 @@
     <hr />
     @if (this.Model.Posts.Any())
     {
-        @foreach (var post in Model.Posts)
+        @foreach (var post in Model.Posts.OrderByDescending(x => x.CreatedOn))
         {
             <div class="container bg-light rounded p-3">
                 <div class="row">
@@ -28,7 +28,7 @@
                         <div>@Html.Raw(post.ShortSanitizedContent)</div>
                     </div>
                     <div class="col-md-2">
-                        <div> @post.CommentsCount Comments <img src="~/img/categories/comment.png" width="30"/></div>
+                        <div> @post.CommentsCount Comments <img src="~/img/categories/comment.png" width="30" /></div>
                     </div>
 
                     <div class="col-md">by <a asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id">@post.UserUserName</a></div>

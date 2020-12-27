@@ -15,6 +15,8 @@
 
         public string Content { get; set; }
 
+        public int View { get; set; }
+
         public string UserId { get; set; }
 
         public ApplicationUser User { get; set; }

@@ -1,7 +1,7 @@
-﻿@model ForumTemplate.Web.ViewModels.Posts.PostCreateModel
+﻿@model ForumTemplate.Web.ViewModels.Posts.PostCreateInputModel
 
 @{
-    this.ViewData["Title"] = "New blog post";
+    this.ViewData["Title"] = "Create new post";
     var categories = Model.Categories.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
 }
 
@@ -9,20 +9,20 @@
 
 
 
-<form method="post" asp-action="Create">
-    <div>
+<form asp-action="Create" method="post">
+    <div class="form-group">
         <label asp-for="Name"></label>
         <input asp-for="Name" class="form-control" />
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
-    <div>
+    <div class="form-group">
         <label asp-for="Content"></label>
         <textarea asp-for="Content" class="form-control"></textarea>
         <span asp-validation-for="Content" class="text-danger"></span>
     </div>
-    <div>
+    <div class="form-group">
         <label asp-for="CategoryId">Category</label>
-        <select asp-for="CategoryId" asp-items="categories" class="form-control"></select>
+        <select asp-for="CategoryId" asp-items="categories" class="form-control"><option value="">Select category for post</option></select>
         <span asp-validation-for="CategoryId" class="text-danger"></span>
     </div>
     <hr />

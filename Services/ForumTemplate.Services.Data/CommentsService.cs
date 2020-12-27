@@ -26,5 +26,10 @@
             await this.commentsRepository.AddAsync(comment);
             await this.commentsRepository.SaveChangesAsync();
         }
+
+        public Task<T> GetByIdAsync<T>(int id)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -14,5 +14,7 @@
         Task<int> EditAsync(string name, string content, int categoryId, int postId);
 
         Task DeleteAsync(int postId);
+
+
     }
 }

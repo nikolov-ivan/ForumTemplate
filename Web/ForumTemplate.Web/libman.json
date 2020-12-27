@@ -57,7 +57,9 @@
         "plugins/emoticons/index.min.js",
         "plugins/emoticons/js/emojis.min.js",
         "plugins/lists/index.min.js",
-        "plugins/code/index.min.js"
+        "plugins/lists/plugin.min.js",
+        "plugins/code/index.min.js",
+        "plugins/autoresize/plugin.min.js"
       ]
     }
   ]
