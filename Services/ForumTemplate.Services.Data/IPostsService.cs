@@ -16,5 +16,7 @@
         Task AddViewAsync(int postId);
 
         Task<IEnumerable<T>> GetAllAsync<T>(string searchString);
+
+        Task<IEnumerable<T>> GetAllAsyncByUser<T>(string userId);
     }
 }

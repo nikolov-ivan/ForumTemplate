@@ -8,6 +8,8 @@
 
         public string Content { get; set; }
 
+        public int? ReplyMessage { get; set; }
+
         public string SenderId { get; set; }
 
         public virtual ApplicationUser Sender { get; set; }

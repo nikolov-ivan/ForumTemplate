@@ -8,7 +8,7 @@
     @if (this.SignInManager.IsSignedIn(this.User))
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @(this.User.Identity.Name)!</a>
+            <a class="nav-link text-dark" asp-controller="Users" asp-action="Profile" title="Manage"><img src="~/img/categories/profle.png" width="30"/></a>
         </li>
         if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
         {

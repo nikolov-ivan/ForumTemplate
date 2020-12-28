@@ -20,7 +20,12 @@
 
         public async Task<IEnumerable<T>> GetAllAsync<T>(string searchString)
         {
-            return await this.postsRepository.All().Where(x => x.Name.Contains(searchString)).To<T>().ToListAsync();
+            return await this.postsRepository.All().Where(x => x.Name.Contains(searchString) || x.Content.Contains(searchString)).To<T>().ToListAsync();
+        }
+
+        public async Task<IEnumerable<T>> GetAllAsyncByUser<T>(string userId)
+        {
+            return await this.postsRepository.All().Where(x => x.UserId == userId).To<T>().ToListAsync();
         }
 
         public async Task<int> CreateAsync(string name, string content, int categoryId, string userId)
