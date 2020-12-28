@@ -1,5 +1,6 @@
-﻿<form class="form-inline md-form form-sm mt-0 p-1" asp-controller="Search" asp-action="Index" asp-route-id="">
-    <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search forum..."
+﻿
+<form class="form-inline md-form form-sm mt-0 p-1" asp-controller="Search" asp-action="Search" method="post">
+    <input name="SearchString" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search forum..."
            aria-label="Search">
-    <i type="submit" class="fas fa-search pl-1" aria-hidden="true"></i>
+    <i type="submit" class="fas fa-search pl-1 btn" aria-hidden="true"></i>
 </form>

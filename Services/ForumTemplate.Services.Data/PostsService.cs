@@ -1,5 +1,6 @@
 ﻿namespace ForumTemplate.Services.Data
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -15,6 +16,11 @@
         public PostsService(IDeletableEntityRepository<Post> postsRepository)
         {
             this.postsRepository = postsRepository;
+        }
+
+        public async Task<IEnumerable<T>> GetAllAsync<T>(string searchString)
+        {
+            return await this.postsRepository.All().Where(x => x.Name.Contains(searchString)).To<T>().ToListAsync();
         }
 
         public async Task<int> CreateAsync(string name, string content, int categoryId, string userId)

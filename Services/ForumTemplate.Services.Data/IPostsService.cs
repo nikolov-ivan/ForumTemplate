@@ -1,8 +1,6 @@
 ﻿namespace ForumTemplate.Services.Data
 {
-    using System;
     using System.Collections.Generic;
-    using System.Text;
     using System.Threading.Tasks;
 
     public interface IPostsService
@@ -16,5 +14,7 @@
         Task DeleteAsync(int postId);
 
         Task AddViewAsync(int postId);
+
+        Task<IEnumerable<T>> GetAllAsync<T>(string searchString);
     }
 }
