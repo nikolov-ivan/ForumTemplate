@@ -8,7 +8,7 @@
 
         public string Content { get; set; }
 
-        public int? ReplyMessage { get; set; }
+        public int? ParentMessage { get; set; }
 
         public string SenderId { get; set; }
 

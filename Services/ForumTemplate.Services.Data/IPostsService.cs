@@ -18,5 +18,7 @@
         Task<IEnumerable<T>> GetAllAsync<T>(string searchString);
 
         Task<IEnumerable<T>> GetAllAsyncByUser<T>(string userId);
+
+        Task<IEnumerable<T>> GetAllPostsAsync<T>();
     }
 }

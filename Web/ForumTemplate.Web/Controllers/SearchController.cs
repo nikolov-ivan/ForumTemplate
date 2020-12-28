@@ -1,6 +1,7 @@
 ﻿namespace ForumTemplate.Web.Controllers
 {
     using System.Threading.Tasks;
+
     using ForumTemplate.Services.Data;
     using ForumTemplate.Web.ViewModels.Posts;
     using ForumTemplate.Web.ViewModels.Search;

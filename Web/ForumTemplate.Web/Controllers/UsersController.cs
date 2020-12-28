@@ -1,5 +1,7 @@
 ﻿namespace ForumTemplate.Web.Controllers
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using ForumTemplate.Data.Models;
@@ -36,6 +38,22 @@
             {
                 Posts = posts,
             };
+            return this.View(model);
+        }
+
+        public async Task<IActionResult> Comments()
+        {
+            var userId = this.userManager.GetUserId(this.User);
+            var posts = await this.postsService.GetAllPostsAsync<PostViewModel>();
+            var model = new UserCommentsViewModel { Posts = new List<PostViewModel>() };
+            foreach (var post in posts)
+            {
+                if (post.Comments.Any(x => x.UserId == userId))
+                {
+                    model.Posts.Add(post);
+                }
+            }
+
             return this.View(model);
         }
     }

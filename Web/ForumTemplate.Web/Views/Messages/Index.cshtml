@@ -1,2 +1,12 @@
-﻿
-<h1>@this.User.Identity.Name's messages</h1>
+﻿<partial name="_UserPartial" />
+<h3>All send and received private messages:</h3>
+<div class="container bg-light rounded p-3">
+    <div class="col">
+        <div class="col-md-4">
+            <a href="/Messages/Send">Send Messages</a>            
+        </div>
+        <div class="col-md-4">
+            <a href="/Messages/Received">Received Messages</a>
+        </div>
+    </div>
+</div>

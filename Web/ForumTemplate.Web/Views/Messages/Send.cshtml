@@ -1,0 +1,17 @@
+﻿@model ForumTemplate.Web.ViewModels.Messages.IndexViewModel
+<partial name="_UserPartial" />
+<div class="container bg-light rounded p-3">
+    @if (Model.SendMessages.Any())
+    {
+        @foreach (var message in Model.SendMessages)
+        {
+            <p>Sender:@message.SenderUserName</p>
+            <p>Content:@message.Content</p>
+            <hr />
+        }
+    }
+    else
+    {
+        <h3>No send messages</h3>
+    }
+</div>

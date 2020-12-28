@@ -23,6 +23,11 @@
             return await this.postsRepository.All().Where(x => x.Name.Contains(searchString) || x.Content.Contains(searchString)).To<T>().ToListAsync();
         }
 
+        public async Task<IEnumerable<T>> GetAllPostsAsync<T>()
+        {
+            return await this.postsRepository.All().To<T>().ToListAsync();
+        }
+
         public async Task<IEnumerable<T>> GetAllAsyncByUser<T>(string userId)
         {
             return await this.postsRepository.All().Where(x => x.UserId == userId).To<T>().ToListAsync();

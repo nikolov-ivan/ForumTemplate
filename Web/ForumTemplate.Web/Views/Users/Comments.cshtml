@@ -1,0 +1,19 @@
+﻿@model ForumTemplate.Web.ViewModels.Users.UserCommentsViewModel
+<partial name="_UserPartial" />
+<h3>All posts commented by you:</h3>
+<hr />
+@if (this.Model.Posts.Any())
+{
+    foreach (var post in Model.Posts)
+    {       
+        <div class="container bg-light rounded p-3">
+            
+            <a asp-controller="Posts" asp-action="ById" asp-route-id="@post.Id">@post.Name</a>
+        </div>
+        <hr />
+    }
+}
+else
+{
+    <h3>You don't have any posts yet!</h3>
+}
