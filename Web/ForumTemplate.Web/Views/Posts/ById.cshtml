@@ -51,15 +51,18 @@
                 <span>Last modified on:<time datetime="@Model.CreatedOn.ToString("O")"></time></span>
             }
         </div>
-        <div class="px-1 pt-3 ml-auto">
-            <a asp-controller="Posts" asp-action="Edit" asp-route-id="@Model.Id" type="button" class="btn btn-primary">Edit</a>
-        </div>
-        <div class="px-1 pt-3 ">
-            <a asp-controller="Comments" asp-action="Create" asp-route-id="@Model.Id" type="button" class="btn btn-primary"><i class="fas fa-reply"></i> Reply</a>
-        </div>
-        <div class="px-1 pt-3">
-            <a asp-controller="Posts" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-primary">Delete</a>
-        </div>
+        @if (this.User.Identity.IsAuthenticated)
+        {
+            <div class="px-1 pt-3 ml-auto">
+                <a asp-controller="Posts" asp-action="Edit" asp-route-id="@Model.Id" type="button" class="btn btn-primary">Edit</a>
+            </div>
+            <div class="px-1 pt-3 ">
+                <a asp-controller="Comments" asp-action="Create" asp-route-id="@Model.Id" type="button" class="btn btn-primary"><i class="fas fa-reply"></i> Reply</a>
+            </div>
+            <div class="px-1 pt-3">
+                <a asp-controller="Posts" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-primary">Delete</a>
+            </div>
+        }
     </div>
 </div>
 
@@ -97,12 +100,6 @@
                 {
                     <span>Last modified on:@comment.ModifiedOn</span>
                 }
-            </div>
-            <div class="px-1 pt-3 ml-auto">
-                <a asp-controller="Posts" asp-action="Edit" asp-route-id="@comment.Id" type="button" class="btn btn-primary">Edit</a>
-            </div>
-            <div class="px-1 pt-3">
-                <a asp-controller="Posts" asp-action="Delete" asp-route-id="@comment.Id" class="btn btn-primary">Delete</a>
             </div>
         </div>
     </div>
