@@ -8,3 +8,9 @@
 a {
     color: dodgerblue;
 }
+
+#input-user-selectized {
+    width: auto !important;
+    border:0 !important;
+}
+

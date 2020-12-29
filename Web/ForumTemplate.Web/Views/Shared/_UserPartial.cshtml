@@ -1,16 +1,16 @@
 ﻿<h1><img src="~/img/categories/profle.png" width="50" /> @this.User.Identity.Name's profile</h1>
 <hr />
 <div class="row bg-light rounded p-3 shadow-lg">
-    <a href="/Users/Posts">
+    <a asp-controller="Users" asp-action="Posts">
         <div class="col-md-3">Posts</div>
     </a>
-    <a href="/Users/Comments">
+    <a asp-controller="Users" asp-action="Comments">
         <div class="col-md-3">Comments</div>
     </a>
-    <a href="/Messages/Index">
+    <a asp-controller="Messages" asp-action="Index">
         <div class="col-md-3">Messages</div>
     </a>
-    <a href="#">
+    <a asp-area="Identity" asp-page="/Account/Manage/Index">
         <div class="col-md-3">Details</div>
     </a>
 </div>

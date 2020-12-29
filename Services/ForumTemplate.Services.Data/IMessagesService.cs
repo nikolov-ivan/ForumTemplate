@@ -8,5 +8,7 @@
         Task<IEnumerable<T>> GetAllReceivedAsync<T>(string receiverId);
 
         Task<IEnumerable<T>> GetAllSendAsync<T>(string senderId);
+
+        Task CreateAsync(string content, string receiverId, string userId, string title);
     }
 }

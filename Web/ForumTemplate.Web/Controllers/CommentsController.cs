@@ -23,7 +23,6 @@
         }
 
         [Authorize]
-        [HttpGet]
         public IActionResult Create()
         {
             return this.View();

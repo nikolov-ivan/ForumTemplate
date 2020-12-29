@@ -27,5 +27,19 @@
         {
             return await this.messagesRepository.All().Where(x => x.SenderId == senderId).To<T>().ToListAsync();
         }
+
+        public async Task CreateAsync(string content, string receiverId, string userId, string title)
+        {
+            var message = new Message
+            {
+                Content = content,
+                Title = title,
+                ReceiverId = receiverId,
+                SenderId = userId,
+            };
+
+            await this.messagesRepository.AddAsync(message);
+            await this.messagesRepository.SaveChangesAsync();
+        }
     }
 }

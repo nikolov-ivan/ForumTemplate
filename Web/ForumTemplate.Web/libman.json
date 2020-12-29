@@ -61,6 +61,17 @@
         "plugins/code/index.min.js",
         "plugins/autoresize/plugin.min.js"
       ]
+    },
+    {
+      "library": "selectize@0.12.6",
+      "destination": "wwwroot/lib/selectize/",
+      "files": [
+        "dist/js/standalone/selectize.js",
+        "dist/js/standalone/selectize.min.js",
+        "dist/css/selectize.css",
+        "dist/css/selectize.min.css",
+        "src/plugins/remove_button/plugin.min.js"
+      ]
     }
   ]
 }

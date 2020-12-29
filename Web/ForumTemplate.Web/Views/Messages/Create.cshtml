@@ -1,0 +1,41 @@
+﻿@model ForumTemplate.Web.ViewModels.Messages.CreatePrivateMessageInputModel
+@{
+    var users = Model.Users.Select(x => new SelectListItem(x.UserName, x.Id.ToString()));
+}
+<h3>Sent new message</h3>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Content"></label>
+        <textarea asp-for="Content" class="form-control"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ReceiverId">Users List:</label>
+        <select asp-for="ReceiverId" id="input-user" >
+            <option value="" disabled selected>Select username</option>
+            @foreach (var user in Model.Users.Where(x=>x.UserName != this.User.Identity.Name))
+            {
+                <option value="@user.Id">@user.UserName</option>
+            }
+        </select>
+        <span asp-validation-for="ReceiverId"></span>
+    </div>
+    <input type="submit" class="btn btn-primary" />
+</form>
+
+
+@section Scripts{
+    <script>
+        $('#input-user').selectize({
+            create: true,
+            sortField: 'text',
+        });
+
+    </script>
+} 
