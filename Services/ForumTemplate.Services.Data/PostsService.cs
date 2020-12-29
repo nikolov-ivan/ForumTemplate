@@ -77,5 +77,21 @@
             post.View++;
             await this.postsRepository.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<T>> GetByCategoryId<T>(int categoryId, int? take = null, int skip = 0)
+        {
+            var query = this.postsRepository.All().OrderByDescending(x => x.CreatedOn).Where(x => x.CategoryId == categoryId).Skip(skip);
+            if (take.HasValue)
+            {
+                query = query.Take(take.Value);
+            }
+
+            return await query.To<T>().ToListAsync();
+        }
+
+        public int GetCountByCategoryId(int categoryId)
+        {
+            return this.postsRepository.All().Count(x => x.CategoryId == categoryId);
+        }
     }
 }

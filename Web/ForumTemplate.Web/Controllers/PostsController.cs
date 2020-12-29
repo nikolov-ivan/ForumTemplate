@@ -113,7 +113,7 @@
             }
 
             await this.postsService.DeleteAsync(post.Id);
-            return this.View();
+            return this.RedirectToAction("Index", "Home");
         }
     }
 }

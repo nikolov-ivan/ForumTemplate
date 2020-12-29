@@ -17,6 +17,10 @@
 
         public int PostsCount { get; set; }
 
-        public IEnumerable<PostInCategoryViewModel> Posts { get; set; }
+        public int PagesCount { get; set; }
+
+        public int CurrentPage { get; set; }
+
+        public IEnumerable<PostInCategoryViewModel> ForumPosts { get; set; }
     }
 }

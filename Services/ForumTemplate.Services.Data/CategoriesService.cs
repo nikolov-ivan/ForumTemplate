@@ -33,7 +33,7 @@
 
         public async Task<T> GetByName<T>(string name)
         {
-            var category = await this.categoryRepository.All().Where(x => x.Name == name).To<T>().FirstOrDefaultAsync();
+            var category = await this.categoryRepository.All().Where(x => x.Name.Replace("-", " ") == name.Replace("-", " ")).To<T>().FirstOrDefaultAsync();
             return category;
         }
     }

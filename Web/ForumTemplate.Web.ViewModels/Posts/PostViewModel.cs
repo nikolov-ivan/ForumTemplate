@@ -2,15 +2,16 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Net;
     using System.Text.RegularExpressions;
-
+    using AutoMapper;
     using ForumTemplate.Common;
     using ForumTemplate.Data.Models;
     using ForumTemplate.Services.Mapping;
     using Ganss.XSS;
 
-    public class PostViewModel : IMapFrom<Post>
+    public class PostViewModel : IMapFrom<Post>, IHaveCustomMappings
     {
         private readonly IHtmlSanitizer sanitizer;
 
@@ -41,8 +42,19 @@
 
         public int View { get; set; }
 
+        public int VotesCount { get; set; }
+
         public int PostDate => (DateTime.UtcNow.Date - this.CreatedOn.Date).Days;
 
         public IEnumerable<CommentInPostViewModel> Comments { get; set; }
+
+        public void CreateMappings(IProfileExpression configuration)
+        {
+            configuration.CreateMap<Post, PostViewModel>()
+                .ForMember(x => x.VotesCount, options =>
+                  {
+                      options.MapFrom(p => p.Votes.Sum(v => (int)v.Type));
+                  });
+        }
     }
 }
