@@ -55,10 +55,15 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            if (builder == null)
+            {
+                throw new ArgumentNullException(string.Empty);
+            }
+
             // Needed for Identity models configuration
             base.OnModelCreating(builder);
 
-            this.ConfigureUserIdentityRelations(builder);
+            this.ConfigureUserIdentityRelations(builder: builder);
 
             EntityIndexesConfiguration.Configure(builder);
 
